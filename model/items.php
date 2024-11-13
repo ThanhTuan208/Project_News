@@ -28,7 +28,9 @@ class item extends Db
     {
         $sql = self::$connection->prepare("SELECT * FROM items LIMIT ?,?");
         $sql->bind_param('ii', $start, $end);
-
+        $sql->execute();
+        $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $item;
     }
 
 }
