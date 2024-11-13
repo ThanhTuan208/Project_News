@@ -5,7 +5,7 @@
         <div class="col-lg-7 px-0">
             <div class="owl-carousel main-carousel position-relative">
                 <?php
-                $get3TinNoiBatNhat = $item->getNewItem();
+
                 foreach ($getTinNoibatNhat as $key => $value1): ?>
                     <div class="position-relative overflow-hidden" style="height: 500px;">
                         <img class="img-fluid h-100" src="<?php echo $value1["image"] ?>" style="object-fit: cover;">
