@@ -24,4 +24,11 @@ class item extends Db
         return $item;
     }
 
+    public function getNewItem($start, $end)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM items LIMIT ?,?");
+        $sql->bind_param('ii', $start, $end);
+
+    }
+
 }

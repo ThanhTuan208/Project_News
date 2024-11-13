@@ -3,8 +3,10 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-7 px-0">
-            <?php foreach ($getTinNoibatNhat as $key => $value1): ?>
-                <div class="owl-carousel main-carousel position-relative">
+            <div class="owl-carousel main-carousel position-relative">
+                <?php
+                $get3TinNoiBatNhat = $item->getNewItem();
+                foreach ($getTinNoibatNhat as $key => $value1): ?>
                     <div class="position-relative overflow-hidden" style="height: 500px;">
                         <img class="img-fluid h-100" src="<?php echo $value1["image"] ?>" style="object-fit: cover;">
                         <div class="overlay">
@@ -18,8 +20,8 @@
                                 href=""><?php echo $value1["title"] ?></a>
                         </div>
                     </div>
-                </div>
-            <?php endforeach ?>
+                <?php endforeach ?>
+            </div>
         </div>
         <div class="col-lg-5 px-0">
             <div class="row mx-0">

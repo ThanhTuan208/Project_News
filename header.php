@@ -8,7 +8,7 @@ $item = new Item();
 $getAllItem = $item->getAllItem();
 
 $getTinNoiBatKhac = $item->TinNoiBat(2, 4);
-$getTinNoibatNhat = $item->TinNoiBat(0, 1);
+
 
 $categories = new categories();
 $getAllCate = $categories->getAllCate();
