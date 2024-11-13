@@ -3,17 +3,16 @@ require "config.php";
 require "model/db.php";
 require "model/categories.php";
 require "model/items.php";
+require "model/users.php";
 
 $item = new Item();
 $getAllItem = $item->getAllItem();
-
 $getTinNoiBatKhac = $item->TinNoiBat(2, 4);
-
 
 $categories = new categories();
 $getAllCate = $categories->getAllCate();
 
-$getNameCate = $categories->getNameCate();
+$users = new User();
 
 
 ?>
@@ -115,13 +114,17 @@ $getNameCate = $categories->getNameCate();
 
                 </div>
                 <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
-                    <input type="text" class="form-control border-0" placeholder="Keyword">
-                    <div class="input-group-append">
-                        <button class="input-group-text bg-primary text-dark border-0 px-3"><i
-                                class="fa fa-search"></i></button>
-                    </div>
+                    <form action="result.php" method="GET" class="w-100">
+                        <input type="text" class="form-control border-0" name="keyword" placeholder="Keyword">
+                        <div class="input-group-append">
+                            <button type="submit" class="input-group-text bg-primary text-dark border-0 px-3">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </nav>
+    </div>
+    </nav>
     </div>
     <!-- Navbar End -->

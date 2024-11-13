@@ -10,15 +10,6 @@ class categories extends Db
         return $categories;
     }
 
-    public function getCateName($categoryId)
-    {
-        $sql = self::$connection->prepare("SELECT name FROM categories WHERE id = ?");
-        $sql->bind_param("i", $categoryId);
-        $sql->execute();
-        $result = $sql->get_result()->fetch_assoc();
-        return $result['name'];
-    }
-
     public function getNameCate()
     {
         $sql = self::$connection->prepare("SELECT categories.name FROM categories JOIN items ON categories.id = items.category");
@@ -27,4 +18,15 @@ class categories extends Db
         $result = $sql->get_result()->fetch_assoc();
         return $result;
     }
+
+    public function getCateByID($cate)
+    {
+        $sql = self::$connection->prepare('SELECT * FROM categories WHERE categories.id = ?');
+        $sql->bind_param('i', $cate);
+        $sql->execute();
+        $item = array();
+        $item = $sql->get_result()->fetch_all(MYSQL_ASSOC);
+        return $item;
+    }
+
 }
