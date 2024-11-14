@@ -108,8 +108,8 @@ $users = new User();
                 <div class="navbar-nav mr-auto py-0">
                     <?php
                     foreach ($getAllCate as $key => $value):
-                        ?>
-                        <a href="" class="nav-item nav-link"><?php echo $value['name'] ?></a>
+                    ?>
+                        <a href="archive.php?cate-id=<?php echo $value['id']?>" class="nav-item nav-link"><?php echo $value['name'] ?></a>
                     <?php endforeach ?>
 
                 </div>

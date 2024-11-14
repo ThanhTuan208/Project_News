@@ -25,8 +25,7 @@ class categories extends Db
         $sql->bind_param('i', $cate);
         $sql->execute();
         $item = array();
-        $item = $sql->get_result()->fetch_all(MYSQL_ASSOC);
+        $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $item;
     }
-
 }
