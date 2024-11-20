@@ -9,7 +9,7 @@ $perPage = 2;
 $start = ($page - 1) * $perPage;
 $search = $item->search($keyword, $start, $perPage);
 $total = count($item->TotalCate($keyword));
-$url = $_SERVER['PHP_SELF'] . '?keyword=' . urlencode($keyword);
+$url = $_SERVER['PHP_SELF'] . '?keyword=' . $keyword;
 ?>
 <!-- News With Sidebar Start -->
 <div class="container-fluid mt-5 pt-3">
