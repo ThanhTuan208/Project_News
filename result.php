@@ -30,16 +30,13 @@ $url = $_SERVER['PHP_SELF'] . '?keyword=' . $keyword;
                             ?>
                         <div class="col-lg-6">
                             <div class="position-relative mb-3">
-                                <img class="img-fluid h-100" src="<?php echo $value["image"] ?>" alt="Image"
-                                    style="object-fit: cover;">
+                                <img class="img-fluid h-100" src="anh/<?php echo $value["image"] ?>" alt="Image">
                                 <div class="bg-white border border-top-0 p-4">
-                                    <?php ?>
                                     <div class="mb-2">
                                         <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
                                             href="">
                                             <?php echo $value['nameCate'] ?>
                                         </a>
-                                        <?php $cateName ?>
                                         <a class="text-body" href=""><small><?php echo $formatDate ?></small></a>
                                     </div>
                                     <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold"
@@ -59,12 +56,13 @@ $url = $_SERVER['PHP_SELF'] . '?keyword=' . $keyword;
                             </div>
                         </div>
                     <?php endforeach ?>
-                    <div class="col-lg-12">
-                        <?php echo $item->pageInt($url, $total, $perPage); ?>
+                </div>
+                <div class="row mx-0">
+                    <div class="col-12 text-center pb-4 pt-5">
+                        <?php echo $item->pageInt($url, $total, $perPage, $page); ?>
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-4">
                 <!-- Social Follow Start -->
                 <div class="mb-3">
@@ -222,16 +220,11 @@ $url = $_SERVER['PHP_SELF'] . '?keyword=' . $keyword;
                     </div>
                     <div class="bg-white border border-top-0 p-3">
                         <div class="d-flex flex-wrap m-n1">
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Politics</a>
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Business</a>
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Corporate</a>
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Business</a>
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Health</a>
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Education</a>
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Science</a>
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Business</a>
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Foods</a>
-                            <a href="" class="btn btn-sm btn-outline-secondary m-1">Travel</a>
+                            <?php
+                            $getAllCate = $categories->getAllCate();
+                            foreach ($getAllCate as $key => $value): ?>
+                                <a href="" class="btn btn-sm btn-outline-secondary m-1"><?php echo $value["slug"] ?></a>
+                            <?php endforeach ?>
                         </div>
                     </div>
                 </div>
@@ -245,3 +238,4 @@ $url = $_SERVER['PHP_SELF'] . '?keyword=' . $keyword;
 
 <?php
 include "footer.php" ?>
+<!-- News With Sidebar End -->

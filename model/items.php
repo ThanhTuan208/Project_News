@@ -13,10 +13,11 @@ class item extends Db
 
     public function TinNoiBat($start, $end)
     {
-        $sql = self::$connection->prepare('SELECT items.*, categories.name AS tenCate
+        $sql = self::$connection->prepare('SELECT items.*, categories.name AS tenCate, users.name as authors
         FROM items
         JOIN categories ON items.category = categories.id
-        ORDER BY items.created_at DESC
+        JOIN users ON users.id = items.author
+        ORDER BY created_at DESC
         LIMIT ?, ?');
         $sql->bind_param('ii', $start, $end);
         $sql->execute();
@@ -61,6 +62,18 @@ class item extends Db
         return $item;
     }
 
+    public function getItemById($id)
+    {
+        $sql = self::$connection->prepare('SELECT items.*, categories.name as nameCate FROM items 
+        JOIN categories ON categories.id = items.category
+        WHERE items.id = ? ');
+        $sql->bind_param('i', $id);
+        $sql->execute();
+        $item = array();
+        $item = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $item;
+    }
+
     public function getItemByCate($cate_id, $page, $count)
     {
         $start = ($page - 1) * $count;
@@ -91,16 +104,24 @@ class item extends Db
         return $item;
     }
 
-    public function pageInt($url, $total, $perPage)
+    public function pageInt($url, $total, $perPage, $page)
     {
         $totalLinks = ceil($total / $perPage);
         $link = "";
+
+        if ($page > 1) {
+            $previousPage = $page - 1;
+            $link = $link . "<a href='$url&page=$previousPage' class='btn btn-outline-warning mx-2 px-3 py-2 shadow'> <- Previous</a>";
+        }
         for ($i = 1; $i <= $totalLinks; $i++) {
-            $link = $link . "<a class='badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2' href='$url&page=$i'> $i </a>";
+            $link = $link . "<a href='$url&page=$i' class='btn btn-outline-warning mx-2 px-3 py-2 shadow'>$i</a>";
+        }
+        if ($page < $totalLinks) {
+            $nextPage = $page + 1;
+            $link = $link . "<a href='$url&page=$nextPage' class='btn btn-outline-warning mx-2 px-3 py-2 shadow'>Next -> </a>";
         }
         return $link;
     }
-
     public function getNameCateByIdItems($name)
     {
         $sql = self::$connection->prepare('SELECT items.*, categories.name as nameCate 

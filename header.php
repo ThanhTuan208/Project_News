@@ -1,21 +1,3 @@
-<?php
-require "config.php";
-require "model/db.php";
-require "model/categories.php";
-require "model/items.php";
-require "model/users.php";
-
-$item = new Item();
-$getAllItem = $item->getAllItem();
-$getTinNoiBatKhac = $item->TinNoiBat(2, 4);
-
-$categories = new categories();
-$getAllCate = $categories->getAllCate();
-
-$users = new User();
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,7 +33,7 @@ $users = new User();
                 <nav class="navbar navbar-expand-sm bg-dark p-0">
                     <ul class="navbar-nav ml-n2">
                         <li class="nav-item border-right border-secondary">
-                            <a class="nav-link text-body small" href="#">Monday, January 1, 2045</a>
+                            <a class="nav-link text-body small" href="#"><?php echo date("Y, M, d") ?></a>
                         </li>
                         <li class="nav-item border-right border-secondary">
                             <a class="nav-link text-body small" href="#">Advertise</a>
@@ -60,7 +42,7 @@ $users = new User();
                             <a class="nav-link text-body small" href="#">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-body small" href="#">Login</a>
+                            <a class="nav-link text-body small" href="AUI/dangnhap.php">Login</a>
                         </li>
                     </ul>
                 </nav>
@@ -105,8 +87,10 @@ $users = new User();
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
+                <a href="index.php" class="nav-item nav-link">HOME</a>
                 <div class="navbar-nav mr-auto py-0">
                     <?php
+                    include "required.php";
                     foreach ($getAllCate as $key => $value):
                         ?>
                         <a href="archive.php?cate-id=<?php echo $value['id'] ?>"

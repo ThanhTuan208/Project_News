@@ -10,4 +10,13 @@ class Db
         }
         return self::$connection;
     }
+
+    public static function getConnection()
+    {
+        if (!self::$connection) {
+            new self();
+        }
+        return self::$connection;
+    }
+
 }

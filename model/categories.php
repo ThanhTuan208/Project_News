@@ -12,11 +12,23 @@ class categories extends Db
 
     public function getNameCate()
     {
-        $sql = self::$connection->prepare("SELECT categories.name FROM categories JOIN items ON categories.id = items.category");
+        $sql = self::$connection->prepare("SELECT categories.name FROM categories 
+        JOIN items ON categories.id = items.category");
         $sql->execute();
         $result = array();
         $result = $sql->get_result()->fetch_assoc();
         return $result;
+    }
+
+    public function getIdByCate()
+    {
+        $sql = self::$connection->prepare("SELECT * FROM categories
+        JOIN items ON items.category = categories.id
+        ");
+        $sql->execute();
+        $categories = array();
+        $categories = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $categories;
     }
 
     public function getCateByID($cate)
